@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from adsinteraction import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('generate_refresh_token', views.generate_refresh_token)
 ]
