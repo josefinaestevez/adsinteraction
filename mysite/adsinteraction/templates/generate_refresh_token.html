@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="text-center">Generate refresh token</h2>
 {% if refresh_token %}
-<p class="text-center">Your refresh token is: <strong>{{refresh_token}}</strong></p>
+<p class="text-center">Permissions allowed :)</strong></p>
 {% else %}
+<h2 class="text-center">Generate refresh token</h2>
 <a  href="{{auth_url}}" 
     class="btn btn-outline-dark" 
     style="text-decoration: none; margin: 50px auto; display: block; width: 400px">
-  Allow permissions to generate refresh token
+  Allow permissions
 </a>
 {% endif %}
 {% endblock %}

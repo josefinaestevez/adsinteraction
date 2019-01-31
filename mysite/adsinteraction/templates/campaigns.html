@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center">Campaigns</h2>
+<table class="table" style="margin-top: 50px">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for campaign in campaigns %}
+    <tr>
+      <th scope="row">{{campaign.id}}</th>
+      <td>{{campaign.name}}</td>
+      <td>{{campaign.status}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

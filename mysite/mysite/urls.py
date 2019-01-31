@@ -19,5 +19,7 @@ from adsinteraction import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('generate_refresh_token', views.generate_refresh_token)
+    path('generate_refresh_token', views.generate_refresh_token, name='generate_refresh_token'),
+    # Client customer id is an id of an account in a google ads manager account ex: 249-145-0448
+    path('campaigns/<str:client_customer_id>', views.campaigns, name='client_campaigns')
 ]
