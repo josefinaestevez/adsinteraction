@@ -62,6 +62,44 @@ def generate_refresh_token(request):
 
   return render(request, 'generate_refresh_token.html', ctx)
 
+
+@refresh_token
+def customers(request):
+
+  client_id = os.getenv('CLIENT_ID', None)
+  client_secret = os.getenv('CLIENT_SECRET', None)
+  refresh_token = request.session.get('refresh_token')
+  developer_token = os.getenv('DEVELOPER_TOKEN', None)
+
+  oauth2_client = oauth2.GoogleRefreshTokenClient(
+    client_id,
+    client_secret, 
+    refresh_token
+  )
+
+  # Initialize the AdWords client.
+  adwords_client = adwords.AdWordsClient(
+      developer_token,
+      oauth2_client,
+  )
+
+  customer_service = adwords_client.GetService('CustomerService', version='v201809')
+
+  selector = {
+      'fields': ['customerId', 'descriptiveName', 'dateTimeZone'],
+  }
+
+  customers = customer_service.getCustomers(selector)
+
+  print(customers)
+
+  ctx = {
+    'customers': customers
+  }
+
+  return render(request, 'customers.html', ctx)
+
+
 @refresh_token
 def campaigns(request, client_customer_id):
 
@@ -125,6 +163,5 @@ def campaigns(request, client_customer_id):
     ctx = {
       'campaigns': campaigns
     }
-
 
   return render(request, 'campaigns.html', ctx)

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center">Customers</h2>
+<table class="table" style="margin-top: 50px">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">TimeZone</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customers %}
+    <tr>
+      <th scope="row">{{customer.customerId}}</th>
+      <td>{{customer.descriptiveName}}</td>
+      <td>{{customer.dateTimeZone}}</td>
+      <td><a style="cursor: pointer;" href="{% url 'client_campaigns' customer.customerId %}">See campaigns</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
